@@ -21,8 +21,16 @@ end
 puts "DEBUG: Bundler config after adding gem:"
 puts `bundle config`
 
-puts "DEBUG: Running bundle install with debug output"
+puts "DEBUG: Installing rspec-rails directly"
 require 'open3'
+stdout, stderr, status = Open3.capture3("GEM_HOME=#{ENV['GEM_HOME']} GEM_PATH=#{ENV['GEM_PATH']} PATH=#{ENV['PATH']} gem install rspec-rails")
+puts "DEBUG: Gem install stdout:"
+puts stdout
+puts "DEBUG: Gem install stderr:"
+puts stderr
+puts "DEBUG: Gem install status: #{status.exitstatus}"
+
+puts "DEBUG: Running bundle install with debug output"
 stdout, stderr, status = Open3.capture3("GEM_HOME=#{ENV['GEM_HOME']} GEM_PATH=#{ENV['GEM_PATH']} PATH=#{ENV['PATH']} BUNDLE_BIN=#{ENV['GEM_HOME']}/bin BUNDLE_CMD=#{ENV['GEM_HOME']}/bin/bundle BUNDLE_DEBUG=1 bundle install --retry 3 --jobs 4 --verbose")
 puts "DEBUG: Bundle install stdout:"
 puts stdout
