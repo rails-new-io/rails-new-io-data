@@ -21,17 +21,9 @@ end
 puts "DEBUG: Bundler config after adding gem:"
 puts `bundle config`
 
-puts "DEBUG: Adding rspec-rails with bundle add"
-require 'open3'
-stdout, stderr, status = Open3.capture3("GEM_HOME=#{ENV['GEM_HOME']} GEM_PATH=#{ENV['GEM_PATH']} PATH=#{ENV['PATH']} BUNDLE_BIN=#{ENV['GEM_HOME']}/bin BUNDLE_CMD=#{ENV['GEM_HOME']}/bin/bundle BUNDLE_DEBUG=1 bundle add rspec-rails --group development --group test")
-puts "DEBUG: Bundle add stdout:"
-puts stdout
-puts "DEBUG: Bundle add stderr:"
-puts stderr
-puts "DEBUG: Bundle add status: #{status.exitstatus}"
-
 puts "DEBUG: Running bundle install with debug output"
-stdout, stderr, status = Open3.capture3("GEM_HOME=#{ENV['GEM_HOME']} GEM_PATH=#{ENV['GEM_PATH']} PATH=#{ENV['PATH']} BUNDLE_BIN=#{ENV['GEM_HOME']}/bin BUNDLE_CMD=#{ENV['GEM_HOME']}/bin/bundle BUNDLE_DEBUG=1 bundle install --retry 3 --jobs 4 --verbose")
+require 'open3'
+stdout, stderr, status = Open3.capture3("GEM_HOME=#{ENV['GEM_HOME']} GEM_PATH=#{ENV['GEM_PATH']} PATH=#{ENV['PATH']} BUNDLE_BIN=#{ENV['GEM_HOME']}/bin BUNDLE_CMD=#{ENV['GEM_HOME']}/bin/bundle BUNDLE_DEBUG=1 bundle install --path #{ENV['GEM_HOME']} --retry 3 --jobs 4 --verbose")
 puts "DEBUG: Bundle install stdout:"
 puts stdout
 puts "DEBUG: Bundle install stderr:"
