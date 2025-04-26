@@ -23,7 +23,7 @@ puts `bundle config`
 
 puts "DEBUG: Running bundle install with debug output"
 require 'open3'
-stdout, stderr, status = Open3.capture3("BUNDLE_BIN=#{ENV['GEM_HOME']}/bin BUNDLE_CMD=#{ENV['GEM_HOME']}/bin/bundle BUNDLE_DEBUG=1 bundle install --retry 3 --jobs 4 --verbose")
+stdout, stderr, status = Open3.capture3("GEM_HOME=#{ENV['GEM_HOME']} GEM_PATH=#{ENV['GEM_PATH']} PATH=#{ENV['PATH']} BUNDLE_BIN=#{ENV['GEM_HOME']}/bin BUNDLE_CMD=#{ENV['GEM_HOME']}/bin/bundle BUNDLE_DEBUG=1 bundle install --retry 3 --jobs 4 --verbose")
 puts "DEBUG: Bundle install stdout:"
 puts stdout
 puts "DEBUG: Bundle install stderr:"
