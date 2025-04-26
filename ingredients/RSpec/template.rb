@@ -21,8 +21,8 @@ end
 puts "DEBUG: Bundler config after adding gem:"
 puts `bundle config`
 
-puts "DEBUG: Running bundle install"
-run "bundle install"
+puts "DEBUG: Running bundle install with debug output"
+run "bundle install --verbose"
 
 puts "DEBUG: Bundler config after bundle install:"
 puts `bundle config`
