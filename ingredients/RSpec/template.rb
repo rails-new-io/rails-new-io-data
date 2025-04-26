@@ -22,7 +22,7 @@ puts "DEBUG: Bundler config after adding gem:"
 puts `bundle config`
 
 puts "DEBUG: Running bundle install with debug output"
-run "bundle install --verbose"
+puts `BUNDLE_DEBUG=1 bundle install --verbose`
 
 puts "DEBUG: Bundler config after bundle install:"
 puts `bundle config`
