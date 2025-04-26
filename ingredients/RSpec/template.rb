@@ -22,7 +22,13 @@ puts "DEBUG: Bundler config after adding gem:"
 puts `bundle config`
 
 puts "DEBUG: Running bundle install with debug output"
-puts `BUNDLE_DEBUG=1 bundle install --verbose`
+require 'open3'
+stdout, stderr, status = Open3.capture3("BUNDLE_DEBUG=1 bundle install --verbose")
+puts "DEBUG: Bundle install stdout:"
+puts stdout
+puts "DEBUG: Bundle install stderr:"
+puts stderr
+puts "DEBUG: Bundle install status: #{status.exitstatus}"
 
 puts "DEBUG: Bundler config after bundle install:"
 puts `bundle config`
