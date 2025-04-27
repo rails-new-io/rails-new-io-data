@@ -18,6 +18,8 @@ gem_group :development, :test do
   gem "rspec-rails"
 end
 
+run 'bundle install'
+
 puts "DEBUG: PATH after bundle install:"
 puts ENV['PATH']
 puts "DEBUG: which bundle after bundle install:"
